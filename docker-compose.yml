@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+    jupyterhub:
+        build:
+          context: '$PWD/build'
+          dockerfile: Dockerfile
+        image: jupyterhub:1.0.0-custom
+        ports:
+            - ${HUB_PORT}:8000
+        container_name: jupyterhub
+        restart: always
+        volumes:
+            - '$PWD/${SHARE_FOLDER}:/home'
+            - '$PWD/config_folder:/srv/jupyterhub'
+        env_file: .env
+        
+
+
+
